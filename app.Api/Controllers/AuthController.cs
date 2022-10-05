@@ -7,12 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace api_rest.Controllers
@@ -57,7 +53,7 @@ namespace api_rest.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                var token = await GerarJwt(user.Email);
+                var token = await GenerateJsonToken(user.Email);
 
                 return CustomResponse(ResultType.Post, token.AccessToken);
             }
@@ -85,7 +81,7 @@ namespace api_rest.Controllers
             {
                 _logger.LogInformation("Usuario " + loginUser.Email + " logado com sucesso");
 
-                var token = await GerarJwt(loginUser.Email);
+                var token = await GenerateJsonToken(loginUser.Email);
                 return CustomResponse(ResultType.Post, token.AccessToken);
 
             }
@@ -103,7 +99,7 @@ namespace api_rest.Controllers
             return CustomResponse(ResultType.Post);
         }
 
-        private async Task<LoginResponseViewModel> GerarJwt(string email)
+        private async Task<LoginResponseViewModel> GenerateJsonToken(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
@@ -112,22 +108,7 @@ namespace api_rest.Controllers
             if (!claims.Any())
                 JwtTokenExtensions.CreateClaims(user.Id, user.Email, userRoles);
 
-            var identityClaims = new ClaimsIdentity();
-            identityClaims.AddClaims(claims);
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.Secret));
-
-            var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
-            {
-                Issuer = _appSettings.Issuer,
-                Audience = _appSettings.UrlAudience,
-                Subject = identityClaims,
-                Expires = DateTime.UtcNow.AddHours(_appSettings.HourExpiration),
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
-            });
-
-            var encodedToken = tokenHandler.WriteToken(token);
+            var encodedToken = JwtTokenExtensions.GenerateToken(_appSettings, claims);
 
             var response = new LoginResponseViewModel
             {
@@ -143,5 +124,6 @@ namespace api_rest.Controllers
 
             return response;
         }
+
     }
 }
