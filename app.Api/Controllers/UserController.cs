@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace app.Api.Controllers
@@ -28,6 +29,16 @@ namespace app.Api.Controllers
             var result = await _userService.GetAllAsync();
             return CustomResponse(ResultType.Get, result);
         }
+
+        //[HttpPost("")]
+        //public async Task<IActionResult> PostPicture(UserModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return CustomResponse(ModelState);
+
+
+
+        //}
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)

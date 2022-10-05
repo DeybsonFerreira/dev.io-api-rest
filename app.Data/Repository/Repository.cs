@@ -2,6 +2,7 @@ using app.Business.Extensions;
 using app.Business.Interfaces;
 using app.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace app.Data.Repository
             DbSet = db.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> Query()
+        public IQueryable<TEntity> Query() 
         {
             return DbSet.AsNoTracking().AsQueryable();
         }
