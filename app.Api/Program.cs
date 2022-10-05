@@ -14,12 +14,21 @@ builder.Services.AddSwaggerGen();
 builder.Services.ResolveDependency(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddCustomCors();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("Development");
+}
+else
+{
+    //alterar se for preciso para outro ambiente
+    app.UseCors("Development");
+
 }
 
 app.UseHttpsRedirection();
@@ -27,5 +36,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
