@@ -4,6 +4,7 @@ using app.Business.Interfaces;
 using app.Business.Models;
 using app.Business.Notification;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace api_rest.Controllers
 {
+    [Authorize]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Route("api/[controller]")]
     public class LoginController : CustomController

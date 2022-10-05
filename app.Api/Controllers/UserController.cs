@@ -4,14 +4,15 @@ using app.Business.Interfaces;
 using app.Business.Models;
 using app.Business.Notification;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace app.Api.Controllers
 {
+    [Authorize]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Route("api/[controller]")]
     public class UserController : CustomController

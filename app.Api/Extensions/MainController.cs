@@ -44,6 +44,9 @@ namespace app.Api.Extensions
                     return NoContent();
 
                 if (type == ResultType.Post)
+                    return Ok(result);
+
+                if (type == ResultType.Post)
                     return RedirectToAction($"Get", new { id = result });
 
                 if (type == ResultType.Delete)
