@@ -5,7 +5,7 @@ namespace app.Business.Notification
 {
     public class Notify : INotify
     {
-        private List<NotificationLite> _notifications;
+        protected List<NotificationLite> _notifications;
 
         public Notify()
         {

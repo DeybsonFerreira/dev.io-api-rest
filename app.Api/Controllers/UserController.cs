@@ -25,21 +25,12 @@ namespace app.Api.Controllers
         }
 
         [HttpGet]
+        [ClaimsAuthorize(ConstClaim.User, ConstClaim.ReadAll)]
         public async Task<IActionResult> Get()
         {
             var result = await _userService.GetAllAsync();
             return CustomResponse(ResultType.Get, result);
         }
-
-        //[HttpPost("")]
-        //public async Task<IActionResult> PostPicture(UserModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return CustomResponse(ModelState);
-
-
-
-        //}
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)
@@ -54,6 +45,7 @@ namespace app.Api.Controllers
         }
 
         [HttpPost]
+        [ClaimsAuthorize(ConstClaim.User, ConstClaim.Create)]
         public async Task<IActionResult> Post(UserModel model)
         {
             if (!ModelState.IsValid)
@@ -65,6 +57,7 @@ namespace app.Api.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [ClaimsAuthorize(ConstClaim.User, ConstClaim.Delete)]
         public async Task<IActionResult> Delete(Guid id)
         {
             try
@@ -79,6 +72,7 @@ namespace app.Api.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [ClaimsAuthorize(ConstClaim.User, ConstClaim.Update)]
         public async Task<IActionResult> Put(Guid id, UserModel model)
         {
             if (!ModelState.IsValid)

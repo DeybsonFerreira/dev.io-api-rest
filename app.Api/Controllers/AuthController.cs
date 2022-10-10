@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NuGet.Packaging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -105,8 +106,7 @@ namespace api_rest.Controllers
             var claims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            if (!claims.Any())
-                JwtTokenExtensions.CreateClaims(user.Id, user.Email, userRoles);
+            claims.AddRange(JwtTokenExtensions.CreateClaims(user.Id, user.Email, userRoles));
 
             var encodedToken = JwtTokenExtensions.GenerateToken(_appSettings, claims);
 

@@ -25,6 +25,7 @@ namespace api_rest.Controllers
         }
 
         [HttpGet]
+        [ClaimsAuthorize(ConstClaim.Login, ConstClaim.ReadAll)]
         public async Task<IActionResult> Get()
         {
             var result = await _loginService.GetAllAsync();
@@ -44,6 +45,7 @@ namespace api_rest.Controllers
         }
 
         [HttpPost]
+        [ClaimsAuthorize(ConstClaim.Login, ConstClaim.Create)]
         public async Task<IActionResult> Post(LoginModel model)
         {
             if (!ModelState.IsValid)
@@ -55,6 +57,7 @@ namespace api_rest.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [ClaimsAuthorize(ConstClaim.Login, ConstClaim.Delete)]
         public async Task<IActionResult> Delete(Guid id)
         {
             try
@@ -69,6 +72,7 @@ namespace api_rest.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [ClaimsAuthorize(ConstClaim.Login, ConstClaim.Update)]
         public async Task<IActionResult> Put(Guid id, LoginModel model)
         {
             if (!ModelState.IsValid)
