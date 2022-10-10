@@ -29,9 +29,10 @@ else
 {
     //alterar se for preciso para outro ambiente
     app.UseCors("Development");
-
+     
 }
 
+app.UseHsts(); //usar somente https
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

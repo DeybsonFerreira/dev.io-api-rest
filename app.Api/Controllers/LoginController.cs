@@ -62,6 +62,9 @@ namespace api_rest.Controllers
         {
             try
             {
+                var usernameLogged = User.Identity.Name;
+                _logger.LogTrace($"O usuário {usernameLogged}, deletou o id {id}");
+
                 await _loginService.RemoveAsync(id);
                 return CustomResponse(ResultType.Delete);
             }
