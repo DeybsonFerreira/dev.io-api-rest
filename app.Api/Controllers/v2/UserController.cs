@@ -10,11 +10,12 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace app.Api.Controllers
+namespace app.Api.Controllers.v2
 {
     [Authorize]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
-    [Route("api/[controller]")]
     public class UserController : CustomController
     {
         private readonly IUserService _userService;

@@ -6,6 +6,9 @@ using app.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using static app.Api.Configuration.SwaggerConfig;
 
 namespace app.Api.Configuration
 {
@@ -13,6 +16,8 @@ namespace app.Api.Configuration
     {
         public static IServiceCollection ResolveDependency(this IServiceCollection services, IConfiguration config)
         {
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
             services.AddScoped<ApiDbContext>();
             services.AddDbContext<ApiDbContext>(option => { option.UseSqlServer(config.GetConnectionString("DefaultConnection")); });
             services.AddScoped<ILoginRepository, LoginRepository>();

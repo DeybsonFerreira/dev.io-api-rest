@@ -12,11 +12,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api_rest.Controllers
+namespace app.Api.Controllers.v1
 {
     [Authorize]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
-    [Route("api/[controller]")]
+
     public class AuthController : CustomController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
