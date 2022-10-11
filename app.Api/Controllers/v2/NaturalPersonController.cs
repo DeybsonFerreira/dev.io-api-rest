@@ -25,13 +25,13 @@ namespace app.Api.Controllers.v2
             _naturalPersonService = naturalPersonService;
         }
 
-        //[HttpGet]
-        //[ClaimsAuthorize(ConstClaim.User, ConstClaim.ReadAll)]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var result = await _naturalPersonService.GetAllAsync();
-        //    return CustomResponse(ResultType.Get, result);
-        //}
+        //[ClaimsAuthorize(ConstClaim.NaturalPerson, ConstClaim.ReadAll)]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var result = _naturalPersonService.GetAll();
+            return CustomResponse(ResultType.Get, result);
+        }
 
         //[HttpGet("{id:guid}")]
         //public async Task<IActionResult> Get(Guid id)
@@ -46,7 +46,7 @@ namespace app.Api.Controllers.v2
         //}
 
         //[HttpPost]
-        //[ClaimsAuthorize(ConstClaim.User, ConstClaim.Create)]
+        //[ClaimsAuthorize(ConstClaim.NaturalPerson, ConstClaim.Create)]
         //public async Task<IActionResult> Post(UserModel model)
         //{
         //    if (!ModelState.IsValid)

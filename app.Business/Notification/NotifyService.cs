@@ -9,10 +9,11 @@ namespace app.Business.Notification
     {
         private readonly INotify _notify;
 
-        protected NotifyService(INotify notificador)
-        {
-            _notify = notificador;
-        }
+        protected NotifyService(INotify notification) => _notify = notification;
+
+        protected bool HasNotification() => _notify.HasNotification();
+        protected void Notify(string mensagem) => _notify.Handle(new NotificationLite(mensagem));
+
 
         protected void Notify(ValidationResult validationResult)
         {
@@ -25,11 +26,6 @@ namespace app.Business.Notification
         {
             foreach (var mensagem in messages)
                 _notify.Handle(new NotificationLite(mensagem));
-        }
-
-        protected void Notify(string mensagem)
-        {
-            _notify.Handle(new NotificationLite(mensagem));
         }
 
         protected bool ExecuteValidate<TV, TE>(TV validacao, TE entidade)

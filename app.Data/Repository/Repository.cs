@@ -2,7 +2,6 @@ using app.Business.Extensions;
 using app.Business.Interfaces.Repositories;
 using app.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,45 +21,42 @@ namespace app.Data.Repository
             DbSet = db.Set<TEntity>();
         }
 
-        public IQueryable<TEntity> Query() 
+        public IQueryable<TEntity> Query()
         {
             return DbSet.AsNoTracking().AsQueryable();
         }
 
         public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
+            return await DbSet.Where(predicate).ToListAsync();
         }
 
         public virtual async Task<TEntity> GetAsync(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet.AsNoTracking().FirstAsync(i => i.Id == id);
         }
 
         public virtual async Task<List<TEntity>> GetAllAsync()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet.AsNoTracking().ToListAsync();
         }
 
         public virtual async Task AddAsync(TEntity entity)
         {
-            DbSet.Add(entity);
-            await SaveChanges();
+            await DbSet.AddAsync(entity);
         }
 
         public virtual async Task UpdateAsync(TEntity entity)
         {
             DbSet.Update(entity);
-            await SaveChanges();
         }
 
         public virtual async Task RemoveAsync(Guid id)
         {
-            TEntity entityDb = DbSet.Find(id);
+            TEntity entityDb = await DbSet.FindAsync(id);
             if (entityDb != null)
             {
                 Db.Entry(entityDb).State = EntityState.Deleted;
-                await SaveChanges();
             }
         }
 

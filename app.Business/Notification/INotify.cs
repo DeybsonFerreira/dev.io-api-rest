@@ -5,7 +5,7 @@ namespace app.Business.Notification
 {
     public interface INotify
     {
-        bool HasNotify();
+        bool HasNotification();
         List<NotificationLite> Get();
         void Handle(NotificationLite notificacao);
 

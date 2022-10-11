@@ -22,7 +22,7 @@ namespace app.Business.Notification
             return _notifications;
         }
 
-        public bool HasNotify()
+        public bool HasNotification()
         {
             return _notifications.Any();
         }

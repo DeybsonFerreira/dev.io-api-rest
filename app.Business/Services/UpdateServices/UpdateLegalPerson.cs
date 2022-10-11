@@ -2,7 +2,7 @@
 
 namespace app.Business.Services.UpdateServices
 {
-    internal class UpdateLegalPerson: IUpdateLegalPerson
+    public class UpdateLegalPerson: IUpdateLegalPerson
     {
     }
 }

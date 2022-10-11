@@ -35,7 +35,7 @@ namespace app.Api.Extensions
 
         protected IActionResult CustomResponse(ResultType type, object result = null, bool success = true)
         {
-            if (_notify.HasNotify())
+            if (_notify.HasNotification())
                 return CustomBadReqeust();
 
             if (success)
