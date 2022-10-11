@@ -23,7 +23,7 @@ namespace app.Api.Configuration
 {
     public static class DependencyInjectionConfig
     {
-        public static IServiceCollection ResolveDependency(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection ConfigureDependencyInjection(this IServiceCollection services, IConfiguration config)
         {
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 

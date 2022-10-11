@@ -9,9 +9,7 @@ namespace app.Api.Configuration
 {
     public static class JwtConfig
     {
-        public static IServiceCollection AddJwtConfig(
-            this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
             // JWT
             var appSettingsSection = configuration.GetSection("AppSettings");

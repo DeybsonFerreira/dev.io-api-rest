@@ -2,9 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace app.Api.Configuration
 {
-    public static class CustomCors
+    public static class CustomCorsConfig
     {
-        public static IServiceCollection AddCustomCors(this IServiceCollection services)
+        public static IServiceCollection ConfigureCustomCors(this IServiceCollection services)
         {
             services.AddCors(options =>
             {

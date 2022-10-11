@@ -20,8 +20,8 @@
 	</ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\app.Data\app.Data.csproj" />
-      <ProjectReference Include="..\app.Business\app.Business.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\app.Data\app.Data.csproj" />
+      <ProjectReference Include="..\..\Core\app.Business\app.Business.csproj" />
     </ItemGroup>
 
 </Project>

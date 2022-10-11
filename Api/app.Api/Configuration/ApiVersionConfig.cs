@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace app.Api.Configuration
 {
-    public static class ConfigureApiVersion
+    public static class ApiVersionConfig
     {
-        public static IServiceCollection AddApiVersionConfiguration(this IServiceCollection services)
+        public static IServiceCollection ConfigureApiVersion(this IServiceCollection services)
         {
             services.AddApiVersioning(options =>
             {

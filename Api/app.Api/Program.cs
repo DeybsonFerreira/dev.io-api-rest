@@ -10,13 +10,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
-builder.Services.ResolveDependency(builder.Configuration);
+builder.Services.ConfigureDependencyInjection(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddIdentityConfig(builder.Configuration);
-builder.Services.AddJwtConfig(builder.Configuration);
-builder.Services.AddApiVersionConfiguration();
-builder.Services.AddCustomCors();
+builder.Services.ConfigureIdentity(builder.Configuration);
+builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.ConfigureApiVersion();
+builder.Services.ConfigureHealthCheck();
+builder.Services.ConfigureCustomCors();
 builder.Services.AddSwaggerConfig();
 
 var app = builder.Build();
@@ -29,7 +30,7 @@ else
 {
     //alterar se for preciso para outro ambiente
     app.UseCors("Development");
-     
+
 }
 
 app.UseHsts(); //usar somente https
