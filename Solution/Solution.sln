@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app.Api", "..\Api\app.Api\app.Api.csproj", "{CE4B4524-AF1F-402B-A5C2-F2F0A4DD3AFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app.Business", "..\Core\app.Business\app.Business.csproj", "{A4E1431A-FB38-4A56-82A4-60D6744865B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app.Business", "..\Domain\app.Business\app.Business.csproj", "{A4E1431A-FB38-4A56-82A4-60D6744865B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app.Data", "..\InfraStructure\app.Data\app.Data.csproj", "{18FD92EA-52B9-43DD-AC0B-647E761C70D3}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{E6A70F20-BB3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfraStructure", "InfraStructure", "{40CA09A3-8D27-463B-88AD-DBC231311A30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{388345E6-A79B-4478-A98F-9C492037B6D5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{388345E6-A79B-4478-A98F-9C492037B6D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -10,15 +10,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
-builder.Services.ConfigureDependencyInjection(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.ConfigureDependencyInjection(builder.Configuration);
 builder.Services.ConfigureIdentity(builder.Configuration);
 builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.ConfigureApiVersion();
 builder.Services.ConfigureHealthCheck();
 builder.Services.ConfigureCustomCors();
-builder.Services.AddSwaggerConfig();
+builder.Services.ConfigureSwagger();
 
 var app = builder.Build();
 
