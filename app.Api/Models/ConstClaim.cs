@@ -5,6 +5,8 @@
         //names
         public const string User = "User";
         public const string Login = "Login";
+        public const string NaturalPerson = "NaturalPerson";
+        public const string LegalPerson = "LegalPerson";
         //values
         public const string Create = "Create";
         public const string ReadAll = "ReadAll";

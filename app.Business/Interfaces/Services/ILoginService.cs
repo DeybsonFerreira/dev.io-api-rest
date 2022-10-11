@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace app.Business.Interfaces
+namespace app.Business.Interfaces.Services
 {
     public interface ILoginService
     {

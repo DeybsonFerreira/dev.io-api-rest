@@ -1,6 +1,6 @@
 ﻿using app.Api.Extensions;
 using app.Api.Models;
-using app.Business.Interfaces;
+using app.Business.Interfaces.Services;
 using app.Business.Models;
 using app.Business.Notification;
 using AutoMapper;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace app.Api.Controllers.v1
 {
     [Authorize]
-    [ApiVersion("1.0")]
+    [ApiVersion("1.0", Deprecated = true)]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class LoginController : CustomController

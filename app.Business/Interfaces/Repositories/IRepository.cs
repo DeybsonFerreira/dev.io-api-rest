@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using app.Business.Extensions;
 
-namespace app.Business.Interfaces
+namespace app.Business.Interfaces.Repositories
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : CustomIdExtension
     {

@@ -12,10 +12,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace app.Api.Controllers.v1
+namespace app.Api.Controllers.v2
 {
     [Authorize]
-    [ApiVersion("1.0", Deprecated = true)]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
 

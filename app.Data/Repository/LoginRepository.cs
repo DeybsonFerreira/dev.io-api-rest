@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using app.Business.Interfaces;
+using app.Business.Interfaces.Repositories;
 using app.Business.Models;
 using app.Data.Context;
 

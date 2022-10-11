@@ -1,4 +1,5 @@
-using app.Business.Interfaces;
+using app.Business.Interfaces.Repositories;
+using app.Business.Interfaces.Services;
 using app.Business.Notification;
 using app.Business.Services;
 using app.Data.Context;
@@ -22,6 +23,8 @@ namespace app.Api.Configuration
             services.AddDbContext<ApiDbContext>(option => { option.UseSqlServer(config.GetConnectionString("DefaultConnection")); });
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();
+            services.AddScoped<INaturalPersonRepository, NaturalPersonRepository>();
 
             services.AddScoped<INotify, Notify>();
             services.AddScoped<ILoginService, LoginService>();

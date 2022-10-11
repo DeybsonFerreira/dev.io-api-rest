@@ -8,7 +8,8 @@ namespace app.Data.Context
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
         }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Login> Logins { get; set; }
+
+        public DbSet<LegalPerson> LegalPerson { get; set; }
+        public DbSet<NaturalPerson> NaturalPerson { get; set; }
     }
 }

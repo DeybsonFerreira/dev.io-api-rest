@@ -20,6 +20,7 @@ namespace app.Api.Configuration
             {
                 c.OperationFilter<SwaggerDefaultValues>();
 
+                //add JWT no swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "Insira o token JWT desta maneira: Bearer {seu token}",
@@ -82,7 +83,7 @@ namespace app.Api.Configuration
         }
         public static IApplicationBuilder UseSwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            //app.UseMiddleware<SwaggerAuthorizedMiddleware>();
+            // app.UseMiddleware<SwaggerAuthorizedMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>

@@ -1,5 +1,5 @@
 using app.Business.Extensions;
-using app.Business.Interfaces;
+using app.Business.Interfaces.Repositories;
 using app.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;

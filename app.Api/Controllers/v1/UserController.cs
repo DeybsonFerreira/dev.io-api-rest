@@ -1,6 +1,6 @@
 using app.Api.Extensions;
 using app.Api.Models;
-using app.Business.Interfaces;
+using app.Business.Interfaces.Services;
 using app.Business.Models;
 using app.Business.Notification;
 using AutoMapper;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace app.Api.Controllers.v1
+namespace app.Api.Controllers.v2
 {
     [Authorize]
     [ApiVersion("1.0", Deprecated = true)]
@@ -20,7 +20,7 @@ namespace app.Api.Controllers.v1
     {
         private readonly IUserService _userService;
 
-        public UserController(ILogger<CustomController> logger, IUserService userService, INotify notify, IMapper mapper) : base(logger, notify, mapper)
+        public UserController(ILogger<UserController> logger, IUserService userService, INotify notify, IMapper mapper) : base(logger, notify, mapper)
         {
             _userService = userService;
         }
