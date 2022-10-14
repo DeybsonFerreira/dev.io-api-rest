@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace app.Business.Services.CreateServices
 {
-    internal class CreateLegalPerson : NotifyService, ICreateLegalPerson
+    public class CreateLegalPerson : NotifyService, ICreateLegalPerson
     {
         public ILegalPersonRepository _legalPersonRepository;
         public CreateLegalPerson(

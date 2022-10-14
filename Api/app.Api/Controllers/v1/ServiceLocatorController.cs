@@ -19,10 +19,16 @@ namespace app.Api.Controllers.v2
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class ServiceLocatorController : CustomController
     {
+        /// <summary>
+        /// Resolver dependências de interface pelo Provider
+        /// </summary>
         public IServiceProvider ServiceProvider { get; }
         public ServiceLocatorController(
             ILogger<ServiceLocatorController> logger,
-            INotify notify, IMapper mapper, IServiceProvider serviceProvider) : base(logger, notify, mapper)
+            INotify notify,
+            IMapper mapper,
+            IServiceProvider serviceProvider
+            ) : base(logger, notify, mapper)
         {
             this.ServiceProvider = serviceProvider;
         }

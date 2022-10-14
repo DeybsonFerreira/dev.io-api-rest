@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace app.Business.Services.ReadServices
 {
-    internal class ReadLegalPerson : NotifyService, IReadLegalPerson
+    public class ReadLegalPerson : NotifyService, IReadLegalPerson
     {
         public ILegalPersonRepository _legalPersonRepository;
 

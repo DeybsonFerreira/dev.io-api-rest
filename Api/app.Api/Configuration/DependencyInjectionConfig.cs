@@ -3,6 +3,7 @@ using app.Business.Interfaces.DeleteServices;
 using app.Business.Interfaces.ReadServices;
 using app.Business.Interfaces.Repositories;
 using app.Business.Interfaces.Services;
+using app.Business.Interfaces.Testes;
 using app.Business.Interfaces.UpdateServices;
 using app.Business.Notification;
 using app.Business.Services;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using static app.Api.Configuration.SwaggerConfig;
 
 namespace app.Api.Configuration
@@ -38,10 +40,30 @@ namespace app.Api.Configuration
             services.AddScoped<IUserService, UserService>();
 
             services.NaturalPersonDependences();
+            services.LegalPersonDependences();
+            services.ResolveDependenceByKey();
+
+            return services;
+        }
+        public static IServiceCollection ResolveDependenceByKey(this IServiceCollection services)
+        {
+            services.AddTransient<ServiceA>();
+            services.AddTransient<ServiceB>();
+
+            services.AddTransient<Func<string, IServiceByKey>>(serviceProvider => key =>
+            {
+                return key switch
+                {
+                    "A" => serviceProvider.GetService<ServiceA>(),
+                    "B" => serviceProvider.GetService<ServiceB>(),
+                    _ => null,
+                };
+            });
+
             return services;
         }
 
-        public static IServiceCollection NaturalPersonDependences(this IServiceCollection services)
+        private static IServiceCollection NaturalPersonDependences(this IServiceCollection services)
         {
             services.AddScoped<INaturalPersonRepository, NaturalPersonRepository>();
             services.AddScoped<INaturalPersonService, NaturalPersonService>();
@@ -49,6 +71,17 @@ namespace app.Api.Configuration
             services.AddScoped<IReadNaturalPerson, ReadNaturalPerson>();
             services.AddScoped<IUpdateNaturalPerson, UpdateNaturalPerson>();
             services.AddScoped<IDeleteNaturalPerson, DeleteNaturalPerson>();
+            return services;
+        }
+
+        private static IServiceCollection LegalPersonDependences(this IServiceCollection services)
+        {
+            services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();
+            services.AddScoped<ILegalPersonService, LegalPersonService>();
+            services.AddScoped<ICreateLegalPerson, CreateLegalPerson>();
+            services.AddScoped<IReadLegalPerson, ReadLegalPerson>();
+            services.AddScoped<IUpdateLegalPerson, UpdateLegalPerson>();
+            services.AddScoped<IDeleteLegalPerson, DeleteLegalPerson>();
             return services;
         }
     }
