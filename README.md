@@ -1,5 +1,35 @@
 
 ---------------------------------------------------
+# Design Patterns
+> Conceito do "Gang of four" (GOF) "que foi introduzida por 4 desenvolvedores". Hoje conta com 23 padrões fundamentais
+
+![alt text](material/23DesignPatterns.png "DesignPatterns")
+
+Separado por 3 Famílias
+## > Creational Pattern ⭐
+Criação de um objeto , como ele é instanciado
+
+![alt text](material/creationPattern.png "DesignPatterns")
+
+
+## > Structural Pattern
+Composição de um objeto/Interface/herança para diferentes funcionalidades
+
+![alt text](material/StructuralPattern.png "DesignPatterns")
+
+
+## > Behavior Pattern
+Interações e comunicação entre os objetos, além da divisão entre responsabilidades
+
+![alt text](material/BehavioralPattern.png "DesignPatterns")
+
+<br>
+
+> Mais detalhes: https://www.dofactory.com/net/design-patterns
+
+
+---------------------------------------------------
+
 
 # Controller > Services > Repository
 # View > Business > Data
