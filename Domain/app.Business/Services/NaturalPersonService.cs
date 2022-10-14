@@ -6,6 +6,7 @@ using app.Business.Interfaces.UpdateServices;
 using app.Business.Models;
 using app.Business.Models.Input;
 using app.Business.Models.Output;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,45 +19,50 @@ namespace app.Business.Services
         private readonly IReadNaturalPerson _readNaturalPerson;
         private readonly IUpdateNaturalPerson _updateNaturalPerson;
         private readonly IDeleteNaturalPerson _deleteNaturalPerson;
+        private readonly IMapper _mapper;
+
 
         public NaturalPersonService(
          ICreateNaturalPerson createNaturalPerson,
          IReadNaturalPerson readNaturalPerson,
          IUpdateNaturalPerson updateNaturalPerson,
-         IDeleteNaturalPerson deleteNaturalPerson
+         IDeleteNaturalPerson deleteNaturalPerson,
+         IMapper mapper
             )
         {
             _createNaturalPerson = createNaturalPerson;
             _readNaturalPerson = readNaturalPerson;
             _updateNaturalPerson = updateNaturalPerson;
             _deleteNaturalPerson = deleteNaturalPerson;
+            _mapper = mapper;
         }
 
-        public IEnumerable<NaturalPerson> GetAll()
+        public IEnumerable<NaturalPersonOutput> GetAll()
         {
             IEnumerable<NaturalPerson> result = _readNaturalPerson.Handle();
-            return result;
+            return _mapper.Map<IEnumerable<NaturalPersonOutput>>(result);
         }
 
-        public IEnumerable<NaturalPerson> Filter(
+        public IEnumerable<NaturalPersonOutput> Filter(
             Guid? naturalPersonId = null,
             string documentNumber = null)
         {
             IEnumerable<NaturalPerson> result = _readNaturalPerson.Handle(naturalPersonId, documentNumber);
-            return result;
+            return _mapper.Map<IEnumerable<NaturalPersonOutput>>(result);
         }
 
-        public async Task<NaturalPersonOutput> SaveAsync(NaturalPersonInput input)
+        public async Task<NaturalPersonOutput> CreateAsync(NaturalPersonInput input)
         {
-            //_createNaturalPerson.HandleAsync();
-            return null;
+            NaturalPerson modelToCreate = _mapper.Map<NaturalPerson>(input);
+            await _createNaturalPerson.HandleAsync(modelToCreate);
+            return _mapper.Map<NaturalPersonOutput>(modelToCreate);
         }
 
-        public async Task<NaturalPersonOutput> ChangeAsync()
+        public async Task<NaturalPersonOutput> UpdateAsync(NaturalPersonInput input, Guid naturalPersonId)
         {
-            //_updateNaturalPerson.HandleAsync();
-            return null;
-
+            NaturalPerson modalToUpdate = _mapper.Map<NaturalPerson>(input);
+            await _updateNaturalPerson.HandleAsync(modalToUpdate, naturalPersonId);
+            return _mapper.Map<NaturalPersonOutput>(modalToUpdate);
         }
 
         public async Task DeleteAsync(Guid naturalPersonId)

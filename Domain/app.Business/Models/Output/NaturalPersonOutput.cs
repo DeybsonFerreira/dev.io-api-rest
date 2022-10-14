@@ -1,6 +1,6 @@
 ﻿namespace app.Business.Models.Output
 {
-    public class NaturalPersonOutput
+    public class NaturalPersonOutput: PersonOutput
     {
     }
 }

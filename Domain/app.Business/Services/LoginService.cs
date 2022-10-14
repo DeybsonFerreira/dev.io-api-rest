@@ -14,7 +14,10 @@ namespace app.Business.Services
     {
         private readonly ILoginRepository _loginRepository;
         private readonly IUserRepository _userRepository;
-        public LoginService(ILoginRepository loginRepository, IUserRepository userRepository, INotify notificador) : base(notificador)
+        public LoginService(
+            ILoginRepository loginRepository,
+            IUserRepository userRepository,
+            INotify notificador) : base(notificador)
         {
             _loginRepository = loginRepository;
             _userRepository = userRepository;
@@ -32,7 +35,7 @@ namespace app.Business.Services
 
         public async Task RemoveAsync(Guid id)
         {
-            IEnumerable<Login> existent = await _loginRepository.Find(e => e.Id == id);
+            IEnumerable<Login> existent = await _loginRepository.FindAsync(e => e.Id == id);
 
             if (!existent.Any())
             {

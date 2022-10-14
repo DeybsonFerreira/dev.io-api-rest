@@ -1,5 +1,6 @@
 ﻿using app.Business.Interfaces.DeleteServices;
 using app.Business.Interfaces.Repositories;
+using app.Business.Models;
 using app.Business.Notification;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +20,10 @@ namespace app.Business.Services.DeleteServices
 
         public async Task HandleAsync(Guid naturalPersonId)
         {
+            NaturalPerson existent = await (_naturalPersonRepository.GetAsync(naturalPersonId));
+            if (existent is null)
+                Notify("Pessoa Física não encontrada");
+
             await _naturalPersonRepository.RemoveAsync(naturalPersonId);
         }
 

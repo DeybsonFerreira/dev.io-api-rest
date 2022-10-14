@@ -26,14 +26,17 @@ namespace app.Data.Repository
             return DbSet.AsNoTracking().AsQueryable();
         }
 
-        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.Where(predicate).ToListAsync();
         }
 
         public virtual async Task<TEntity> GetAsync(Guid id)
         {
-            return await DbSet.AsNoTracking().FirstAsync(i => i.Id == id);
+            if (id == Guid.Empty)
+                return null;
+
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public virtual async Task<List<TEntity>> GetAllAsync()

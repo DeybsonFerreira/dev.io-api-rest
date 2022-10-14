@@ -30,7 +30,7 @@ namespace app.Business.Services
 
         public async Task RemoveAsync(Guid id)
         {
-            IEnumerable<User> existent = await _userRepository.Find(e => e.Id == id);
+            IEnumerable<User> existent = await _userRepository.FindAsync(e => e.Id == id);
 
             if (!existent.Any())
             {

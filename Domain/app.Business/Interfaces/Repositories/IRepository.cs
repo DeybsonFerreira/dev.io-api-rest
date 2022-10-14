@@ -15,7 +15,7 @@ namespace app.Business.Interfaces.Repositories
         Task<List<TEntity>> GetAllAsync();
         Task UpdateAsync(TEntity entity);
         Task RemoveAsync(Guid id);
-        Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();
     }
 }
