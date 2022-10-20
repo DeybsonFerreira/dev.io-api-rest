@@ -28,6 +28,15 @@ Interações e comunicação entre os objetos, além da divisão entre responsab
 > Mais detalhes: https://www.dofactory.com/net/design-patterns
 
 
+
+## ✔️ Patther Strategy
+- Trabalha junto com o princípio SOLID do (open-closed - principio do aberto fechado), e Inversão de controler (pela interface)
+- não precisa adicionar vários "If s" , basta criar a especialização baseado na interface.
+exemplo abaixo: temos classe especializada que faz a função principal, mas temos classes concretas onde são executadas pela instância da interface. (como uma factory)
+![alt text](material/strategyPattern.png "DesignPatterns")
+
+
+
 ---------------------------------------------------
 
 
@@ -60,3 +69,5 @@ Interações e comunicação entre os objetos, além da divisão entre responsab
 - dotnet add package Microsoft.AspNetCore.Mvc.Versioning --version 5.0.0
 - dotnet add package Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer --version 5.0.0
 - dotnet add package AspNetCore.HealthChecks.UI --version 6.0.5
+
+
